@@ -1,0 +1,41 @@
+{
+  "name": "mix-form",
+  "version": "0.0.1",
+  "description": "mix-form",
+  "license": "MIT",
+  "repository": "",
+  "author": "",
+  "keywords": [
+    ""
+  ],
+  "scripts": {
+    "clean": "rimraf lib && rimraf coverage && rimraf .nyc_output && rimraf lib_test",
+    "test": "npm run clean && nyc --exclude \"**/*-spec.js\" ava \"**/*-spec.js\" --verbose",
+    "coverage": "nyc report --reporter=lcov --reporter=text --reporter=html",
+    "watch:test": "npm run test -- --watch"
+  },
+  "dependencies": {
+    "antd": "^2.12.6"
+  },
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "coveralls": "^2.0.0",
+    "enzyme": "^2.9.1",
+    "nyc": "^10.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
+    "rimraf": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  }
+}
