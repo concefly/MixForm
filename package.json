@@ -5,12 +5,7 @@
   "license": "MIT",
   "repository": "",
   "author": "concefly",
-  "keywords": [
-    "react",
-    "antd",
-    "form",
-    "MixForm"
-  ],
+  "keywords": ["react", "antd", "form", "MixForm"],
   "scripts": {
     "clean": "rimraf lib && rimraf coverage && rimraf .nyc_output && rimraf lib_test",
     "test": "npm run clean && nyc --exclude \"**/*-spec.js\" ava \"**/*-spec.js\" --verbose",
@@ -37,7 +32,6 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "nyc": "^10.0.0",
-    "pre-commit": "^1.2.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router": "^4.1.2",
@@ -52,12 +46,7 @@
     "node": ">=6.0.0"
   },
   "ava": {
-    "require": [
-      "babel-register"
-    ],
+    "require": ["babel-register"],
     "babel": "inherit"
-  },
-  "pre-commit": [
-    "build"
-  ]
+  }
 }
