@@ -80,6 +80,7 @@ class SingleImageUpload extends Component {
   }
   render() {
     const { imgUrl } = this.state;
+    const { uploadPath } = this.props;
     const [thumbWidth, thumbHeight] = this.props.thumbSize;
     const bgStyle = {
       width: thumbWidth,
@@ -95,7 +96,7 @@ class SingleImageUpload extends Component {
         <Upload
           accept="images/*"
           listType="picture"
-          action="/api/upload"
+          action={uploadPath || '/api/upload'}
           showUploadList={false}
           onChange={this.handleChange.bind(this)}
         >
