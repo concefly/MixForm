@@ -13,9 +13,11 @@ const {
   Row,
   Col,
   Icon,
+  Tooltip,
 } = require('antd');
 const moment = require('moment');
 const _ = require('lodash');
+const { copyTextToClipboard } = require('./util');
 
 const Component = React.Component;
 const PropTypes = React.PropTypes;
@@ -310,16 +312,49 @@ class DataProviderParamSet extends Component {
   }
 }
 
+class Plain extends Component {
+  render() {
+    return (
+        <div className="ant-form-text">
+          {this.props.value}
+        </div>
+      );
+  }
+}
+
+class CopyPlain extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      copyed: false
+    };
+  }
+  handleCopy() {
+    copyTextToClipboard(this.props.value);
+    this.setState({
+      copyed: true,
+    }, () => {
+      setTimeout(() => this.setState({
+        copyed: false,
+      }), 3000)
+    })
+  }
+  render() {
+    return (
+      <div className="ant-form-text">
+        <span style={{marginRight: 8}}>{this.props.value}</span>
+        <Tooltip placement="top" title={this.state.copyed ? '已复制~' : '点击复制'}>
+          <a onClick={this.handleCopy.bind(this)}><Icon type="copy" /></a>
+        </Tooltip>
+      </div>
+    )
+  }
+}
+
 module.exports = function getField(field) {
   switch (field.type) {
     case 'hidden':
       return <input type="hidden" />;
-    case 'plain':
-      return (
-        <span className="ant-form-text">
-          {field.children}
-        </span>
-      );
     case 'switch':
       return <ValueSwitch />;
     case 'input':
@@ -353,6 +388,10 @@ module.exports = function getField(field) {
       return <SingleImageUpload {...field.props} />;
     case 'dataProviderParamSet':
       return <DataProviderParamSet {...field.props} />;
+    case 'plain': 
+      return <Plain {...field.props} />;
+    case 'copyPlain':
+      return <CopyPlain {...field.props} />;
     default:
       return <span className="ant-form-text">暂不支持</span>;
   }

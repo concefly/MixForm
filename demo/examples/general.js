@@ -27,7 +27,16 @@ module.exports = {
           label: '文本',
           field: {
             type: 'plain',
-            children: '这里是plain text，随便写什么，whatever',
+            defaultValue: '这里是plain text，随便写什么，whatever',
+          },
+        },
+      },
+      text: {
+        view: {
+          label: '文本x',
+          field: {
+            type: 'copyPlain',
+            defaultValue: '还可以带复制按钮',
           },
         },
       },
